@@ -21,9 +21,12 @@ const ngoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    ward: [{
+    wards: [{
         type: Schema.Types.ObjectId, ref: 'Ward'
     }]
+},
+{
+    timestamps: true
 })
 
 //Creating an NGO Model with the above schema

@@ -31,7 +31,11 @@ const donorSchema = new mongoose.Schema({
         required: true
     },
     organizationName: String
-})
+},
+    {
+        timestamps: true
+    }
+)
 
 //Creating a Donor Model with the above schema
 const donor = mongoose.model('Donor', donorSchema);
