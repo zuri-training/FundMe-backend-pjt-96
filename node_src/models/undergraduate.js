@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
   { Schema } = mongoose,
   bcrypt = require("bcrypt"),
-  universityStudentSchema = new Schema(
+  undergraduateSchema = new Schema(
     {
       name: {
         firstName: {
@@ -10,6 +10,11 @@ const mongoose = require("mongoose"),
           required: true,
         },
         lastName: {
+          type: String,
+          trim: true,
+          required: true,
+        },
+        university: {
           type: String,
           trim: true,
           required: true,
@@ -57,11 +62,11 @@ const mongoose = require("mongoose"),
     }
   );
 
-universityStudentSchema.virtual("fullName").get(function () {
+undergraduateSchema.virtual("fullName").get(function () {
   return `${this.name.firstName} ${this.name.lastName}`;
 });
 
-universityStudentSchema.pre("save", function (next) {
+undergraduateSchema.pre("save", function (next) {
   let user = this;
   bcrypt
     .hash(user.password, 10)
@@ -75,9 +80,11 @@ universityStudentSchema.pre("save", function (next) {
     });
 });
 
-universityStudentSchema.methods.passwordComparison = function (inputPassword) {
-  let user = this;
-  return bcrypt.compare(inputPassword, user.password);
+undergraduateSchema.methods.isValidPassword = async function (password) {
+  const user = this;
+  const compare = await bcrypt.compare(password, user.password);
+
+  return compare;
 };
 
-module.exports = mongoose.model("UniversityStudent", universityStudentSchema);
+module.exports = mongoose.model("Undergraduate", undergraduateSchema);
