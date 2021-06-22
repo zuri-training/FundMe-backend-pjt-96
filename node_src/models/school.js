@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
   { Schema } = mongoose,
   bcrypt = require("bcrypt"),
-  schoolSchema = Schema(
+  schoolSchema = new Schema(
     {
       name: {
         type: String,
