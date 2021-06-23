@@ -7,7 +7,7 @@ const routes = require("./routes");
 const app = express();
 
 //initialise database connection
-dbSetup();
+dbSetup(app);
 app.use(
   express.urlencoded({
     extended: false,
@@ -17,7 +17,3 @@ app.use(express.json());
 
 // export app instance to be used in the routes file
 routes(app);
-
-app.listen(PORT || 4000, () => {
-  console.log("Server is running");
-});
