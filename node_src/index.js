@@ -1,13 +1,13 @@
 const express = require("express");
 require("dotenv").config();
 const { PORT } = process.env; //get sensitive info from .env file
-const dbSetup = require("./database/setup");
+const MongoDBSetup = require("./database/mongoose");
 const routes = require("./routes");
 
 const app = express();
 
 //initialise database connection
-dbSetup(app);
+MongoDBSetup(app);
 app.use(
   express.urlencoded({
     extended: false,
