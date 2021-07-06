@@ -1,4 +1,4 @@
-const fundme = require("./fundme");
+const fundme = require("./webapp/fundme");
 
 module.exports = (app) => {
   app.use("/api/v1/fundme", fundme);
