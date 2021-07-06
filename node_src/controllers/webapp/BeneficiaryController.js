@@ -1,4 +1,4 @@
-const BeneficiaryService = require("../services/BeneficiaryService");
+const BeneficiaryService = require("../../services/webapp/BeneficiaryService");
 module.exports = class BeneficiaryController {
   static async getAllBeneficiaries(request, response) {
     try {
