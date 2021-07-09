@@ -1,4 +1,4 @@
-const UndergraduateService = require("../services/UndergraduateService");
+const UndergraduateService = require("../../services/webapp/UndergraduateService");
 
 module.exports = class UndergraduateController {
   static async createStudentProfile(request, response) {
