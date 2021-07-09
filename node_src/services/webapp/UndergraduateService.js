@@ -1,3 +1,4 @@
+require("express-async-errors");
 const Undergraduate = require("../../models/mongoose/undergraduate");
 
 module.exports = class UndergraduateService {
@@ -20,12 +21,8 @@ module.exports = class UndergraduateService {
 
   static async createStudentProfile(details) {
     let student = UndergraduateService.getUserParams(details);
-    try {
-      let studentCreated = await Undergraduate.create(student);
-      return studentCreated;
-    } catch (error) {
-      return error;
-    }
+    let studentCreated = await Undergraduate.create(student);
+    return studentCreated;
   }
 
   static async getAllUndergraduates() {
