@@ -1,19 +1,53 @@
 const BeneficiaryService = require("../../services/webapp/BeneficiaryService");
 module.exports = class BeneficiaryController {
-  static async getAllBeneficiaries(request, response) {
+
+  static async createBeneficiaryAccount(req, res){
     try {
-      let beneficiaries = await BeneficiaryService.getAllBeneficiaries();
-      response
-        .status(200)
-        .json({ code: "SUCCESS", success: beneficiaries, error: null });
+        let beneficiary = await BeneficiaryService.createBeneficiaryAccount(req.body);
+
+        res.status(201).json({status: 'Successful', data: beneficiary})
     } catch (error) {
-      response.status(500).json({
-        code: "FAILED",
-        success: null,
-        error:
-          error.message ||
-          " You cannot get all the list of Students at the moment",
-      });
+        res.status(500).json({status: 'Failed', error: error})
     }
-  }
+}
+
+static async getAllBeneficiaries(req, res){
+    try {
+        let beneficiaries = await BeneficiaryService.getAllBeneficiaries();
+
+        res.status(201).json({status: 'Successful', data: beneficiaries})
+    } catch (error) {
+        res.status(500).json({status: 'Failed', error: error})
+    }
+}
+
+static async getBeneficiaryByID(req, res){
+    try {
+        let beneficiaries = await BeneficiaryService.getBeneficiaryById(req.params.id);
+
+        res.status(201).json({status: 'Successful', data: beneficiaries})
+    } catch (error) {
+        res.status(500).json({status: 'Failed', error: error})
+    }
+}
+
+static async deleteBeneficiaryById(req, res){
+    try {
+        let beneficiary = await BeneficiaryService.deleteBeneficiaryByID(req.params.id);
+
+        res.status(201).json({status: 'Successful', data: beneficiary})
+    } catch (error) {
+        res.status(500).json({status: 'Failed', error: error})
+    }
+}
+
+static async updateBeneficiaryById(req, res){
+    try {
+        let beneficiary = await BeneficiaryService.updateBeneficiaryById(req.params.id, req.body);
+
+        res.status(201).json({status: 'Successful', data: beneficiary})
+    } catch (error) {
+        res.status(500).json({status: 'Failed', error: error})
+    }
+}
 };

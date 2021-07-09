@@ -1,9 +1,62 @@
 const mongoose = require("mongoose"),
   { Schema } = mongoose,
-  beneficiariesSchema = new Schema({
-    wards: [{ type: Schema.Types.ObjectId, ref: "Ward" }],
-    undergraduates: [{ type: Schema.Types.ObjectId, ref: "Undergraduate" }],
-    schools: [{ type: Schema.Types.ObjectId, ref: "School" }],
-    ngos: [{ type: Schema.Types.ObjectId, ref: "Ngo" }],
-  });
+  beneficiariesSchema = new Schema(
+    {
+      name: {
+        firstName: {
+          type: String,
+          trim: true,
+          required: true,
+        },
+        lastName: {
+          type: String,
+          trim: true,
+          required: true,
+        }
+      },
+      password: {
+        type: String,
+        required: true,
+      },
+      country: {
+        type: String,
+        trim: true,
+        required: true,
+      },
+      state: {
+        type: String,
+        trim: true,
+        required: true,
+      },
+      city: {
+        type: String,
+        trim: true,
+        required: true,
+      },
+      address: {
+        type: String,
+        trim: true,
+        required: true,
+      },
+      postalcode: {
+        type: String,
+        trim: true,
+        required: true,
+      },
+      email: {
+        type: String,
+        trim: true,
+        required: true,
+        lowercase: true,
+        unique: true,
+      },
+      phoneNumber: {
+        type: Number,
+        required: true,
+      }
+    },
+    {
+      timestamps: true,
+    }
+  );
 module.exports = mongoose.model("Beneficiary", beneficiariesSchema);
