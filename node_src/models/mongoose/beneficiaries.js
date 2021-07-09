@@ -12,7 +12,7 @@ const mongoose = require("mongoose"),
           type: String,
           trim: true,
           required: true,
-        }
+        },
       },
       password: {
         type: String,
@@ -53,7 +53,7 @@ const mongoose = require("mongoose"),
       phoneNumber: {
         type: Number,
         required: true,
-      }
+      },
     },
     {
       timestamps: true,

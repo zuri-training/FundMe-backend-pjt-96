@@ -1,4 +1,4 @@
-const Undergraduate = require("../models/undergraduate");
+const Undergraduate = require("../../models/mongoose/undergraduate");
 
 module.exports = class UndergraduateService {
   static getUserParams(body) {
