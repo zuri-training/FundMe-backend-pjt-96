@@ -12,7 +12,7 @@ const mongoose = require("mongoose"),
           type: String,
           trim: true,
           required: true,
-        },
+        }
       },
       password: {
         type: String,
@@ -54,6 +54,14 @@ const mongoose = require("mongoose"),
         type: Number,
         required: true,
       },
+      cacDocument: {
+        type: Buffer,
+        required: true
+      },
+      govVerification: {
+        type: Buffer,
+        required: true
+      }
     },
     {
       timestamps: true,
