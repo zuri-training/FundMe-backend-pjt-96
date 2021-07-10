@@ -1,3 +1,4 @@
+require("express-async-errors");
 const Beneficiary = require('../../models/mongoose/beneficiaries');
 
 module.exports = class BeneficiaryService {
@@ -21,12 +22,9 @@ module.exports = class BeneficiaryService {
 
   static async createBeneficiaryProfile(details) {
     let beneficiary = BeneficiaryService.getUserParams(details);
-    try {
-      let beneficiaryCreated = await Beneficiary.create(beneficiary);
-      return beneficiaryCreated;
-    } catch (error) {
-      return error;
-    }
+    let beneficiaryCreated = await Beneficiary.create(beneficiary);
+    return beneficiaryCreated;
+  
   }
 
   static async getAllBeneficiaries() {

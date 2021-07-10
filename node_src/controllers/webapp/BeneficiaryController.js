@@ -1,15 +1,13 @@
 const BeneficiaryService = require("../../services/webapp/BeneficiaryService");
 module.exports = class BeneficiaryController {
   static async createBeneficiaryAccount(req, res) {
-    try {
-      let beneficiary = await BeneficiaryService.createBeneficiaryAccount(
+    
+      let beneficiary = await BeneficiaryService.createBeneficiaryProfile(
         req.body
       );
 
       res.status(201).json({ status: "Successful", data: beneficiary });
-    } catch (error) {
-      res.status(500).json({ status: "Failed", error: error });
-    }
+    
   }
 
   static async getAllBeneficiaries(req, res) {
