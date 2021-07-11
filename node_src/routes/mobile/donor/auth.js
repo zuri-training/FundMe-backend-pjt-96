@@ -1,6 +1,7 @@
+require("dotenv").config();
 const passport = require("passport");
 const localStrategy = require("passport-local").Strategy;
-const Undergraduate = require("../../../models/mongoose/undergraduate");
+const Donor = require("../../../models/mongoose/donor");
 const JWTstrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
 
@@ -13,13 +14,13 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const user = await Undergraduate.findOne({ email });
+        const user = await Donor.findOne({ email });
 
         if (!user) {
           return done(null, false, { message: "User not found" });
         }
 
-        const validate = await user.isValidPassword(password);
+        const validate = await user.passwordComparison(password);
 
         if (!validate) {
           return done(null, false, { message: "Wrong Password" });
@@ -36,7 +37,7 @@ passport.use(
 passport.use(
   new JWTstrategy(
     {
-      secretOrKey: "TOP_SECRET",
+      secretOrKey: "ZuriFundMeMobileApps3cr3T",
       jwtFromRequest: ExtractJWT.fromUrlQueryParameter("secret_token"),
     },
     async (token, done) => {

@@ -5,6 +5,11 @@ exports.respondInternalError = (error, req, res, next) => {
         status: "Failed",
         message: `${error.keyValue[0]} is already used`,
       });
+    } else {
+      res.status(500).json({
+        status: "Failed",
+        message: "Cannot access the server at the moment",
+      });
     }
   }
 };

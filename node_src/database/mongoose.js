@@ -1,9 +1,10 @@
+require("express-async-errors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const { PORT } = process.env;
 
 const { connectionUri, connectionUrl } = process.env;
-mongoose.Promise = global.Promise;
+//mongoose.Promise = global.Promise;
 module.exports = (app) => {
   mongoose.connect(connectionUrl, {
     useNewUrlParser: true,
